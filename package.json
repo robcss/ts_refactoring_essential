@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "test": "mocha -r ts-node/register/transpile-only --project tsconfig.json \"**/test/*.ts\""
+    "test": "mocha -r ts-node/register/transpile-only --project tsconfig.json \"**/test/*.test.ts\""
   },
   "keywords": [],
   "author": "",
