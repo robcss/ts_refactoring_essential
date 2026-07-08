@@ -1,27 +1,12 @@
-type ShippingType = "STANDARD" | "EXPRESS" | "OVERNIGHT";
+import { Order, OrderService } from "./OrderService";
 
-interface Order {
-    orderId: number;
-    shippingType: ShippingType | string;
-    weightKg: number;
-    distanceKm: number;
-    fragile: boolean;
-}
 
 export class ShippingCalculator {
 
-    async calculateShipping(orderId: number): Promise<number> {
+    async calculateShipping(orderId: number, orderService: OrderService): Promise<number> {
         try {
-            const response = await fetch(
-                `https://codemanship.co.uk/api/orders.php?orderId=${orderId}`
-            );
 
-            if (!response.ok) {
-                throw new Error(`HTTP error: ${response.status}`);
-            }
-
-            const json = await response.json();
-            const order: Order = json;
+            const order: Order = await orderService.getOrder(orderId);
 
             switch (order.shippingType) {
                 case "STANDARD":

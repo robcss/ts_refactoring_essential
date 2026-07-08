@@ -1,3 +1,4 @@
+import { OrderService } from "./OrderService";
 import {ShippingCalculator} from "./ShippingCalculator";
 
 async function main() {
@@ -16,9 +17,10 @@ async function main() {
     }
 
     const calculator = new ShippingCalculator();
+    const orderService = new OrderService();
 
     try {
-        const cost = await calculator.calculateShipping(orderId);
+        const cost = await calculator.calculateShipping(orderId, orderService);
 
         console.log(`Order ID: ${orderId}`);
         console.log(`Shipping cost: ${cost}`);
